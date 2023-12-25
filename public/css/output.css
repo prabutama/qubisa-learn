@@ -614,8 +614,8 @@ video {
   z-index: 10;
 }
 
-.z-20 {
-  z-index: 20;
+.z-50 {
+  z-index: 50;
 }
 
 .mx-auto {
@@ -752,6 +752,33 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[35\%\] {
+  width: 35%;
+}
+
+.w-\[40\%\] {
+  width: 40%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-max {
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.w-min {
+  width: -moz-min-content;
+  width: min-content;
 }
 
 .translate-y-full {
@@ -1135,6 +1162,10 @@ video {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.text-xxs {
+  font-size: 0.60rem;
 }
 
 .focus-within\:text-gray-600:focus-within {
