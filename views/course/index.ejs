@@ -1,0 +1,55 @@
+<%- layout('layouts/app') %>
+
+<section>
+    <div class="container mx-auto py-6 px-3">
+        <div class="mx-auto bg-yellow-300 py-6 rounded-md">
+            <p class="text-lg md:text-xl text-center text-[#353b64] font-medium">Explore course is you want</p>
+            <p class="text-xs lg:text-md text-center text-[#353b64] font-medium lg:mt-1 mb-2">Lorem ipsum dolor quam mquepudiandae!</p>
+            <form action="/" class="">
+                <div class="relative flex items-center text-sm text-gray-400 focus-within:text-gray-600">
+                    <div class="absolute left-[19%] lg:left-[36%]">
+                        <i class="bi bi-search text-sm text-gray-500 lg:text-xl"></i>
+                    </div>
+                    <input type="text" name="search" placeholder="Search talk" autocomplete="off" aria-label="Search talk" class="w-[70%] lg:w-[30%] mx-auto pr-3 pl-10 py-2 font-regular placeholder-gray-500 text-black ring-2 ring-slate-300 rounded-2xl border-none focus:outline-none focus:border-[#353b64] focus:ring-[#353b64] focus:ring-2">
+                </div>
+            </form>
+        </div>
+        <div class="mt-6">
+            <select id="countries" class="bg-gray-50 border border-gray-400 text-[#353b64] text-xs lg:text-sm rounded-sm lg:rounded-md focus:outline-none focus:ring-[#353b64] focus:border-[#353b64] block w-[30%] lg:w-[12%] px-2">
+                <option selected>Category</option>
+                <option value="US">Web Development</option>
+                <option value="CA">Mobile Development</option>
+                <option value="FR">Cyber Security</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container mt-2 mx-auto">
+        <div class="flex lg:flex flex-wrap justify-center gap-5 lg:gap-15">
+            <% for (let i = 1; i <= 12; i++) { %>
+                <div class="w-[43%] lg:w-[15%] bg-white rounded-lg border-4 border-[#353b64] px-3 py-3 hover:scale-[1.03] hover:rotate-1 duration-200">
+                    <div class="bg-gray-300 rounded-md p-3">
+                        <img class="w-[50%] lg:w-[80%] mx-auto" src="https://cdn3d.iconscout.com/3d/free/thumb/free-mongo-db-9294853-7577996.png" alt="">
+                    </div>
+                    <p class="text-xs lg:text-xs text-gray-500 font-regular mt-1">By Danur Isa <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
+                    <p class="text-sm md:text-md text-[#353b64] font-medium mt-1">MongoDB expert </p>
+                    <p class="text-xs text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i> Back-end Developmnet</p>
+                    <p class="text-xs text-gray-500"><i class="bi bi-book-half mr-1 text-gray-500"></i> 20 Materi</p>
+                    <p class="text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-sm text-[#FFC436] font-medium">4.9</span> (100) Reviews</p>
+                </div>
+            <% } %>       
+        </div>
+    </div>
+</section>
+
+
+           
+ <!-- <div class="h-[80px] overflow-y-scroll no-scrollbar px-1 py-1">
+        <p class="text-xs lg:text-xs text-[#353b64] font-regular">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi delectus debitis harum aut soluta! Rem, aut illum tempore voluptate laboriosam, ducimus repellat animi accusamus nobis, debitis impedit recusandae inventore doloremque consequuntur voluptatem quo libero soluta!</p>
+    </div>
+    <div class="flex justify-end lg:px-3">
+        <button class="text-sm mt-3 lg:my-4 bg-[#fcdb65] text-[#353b64] px-5 py-2 rounded-lg duration-300 hover:scale-95 font-medium">Enroll</button>
+    </div> -->
+

@@ -1,0 +1,40 @@
+<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+<header class="bg-[#265073] border-b-2 py-2 sticky top-0 z-20">
+    <nav class="flex justify-between items-center w-[92%] mx-auto px-3 lg:px-10 bg-white rounded-xl">
+        <div>
+            <img class="w-16 cursor-pointer duration-300 hover:scale-105" src="/img/logo.png" alt="...">
+        </div>
+        <div
+            class="nav-links duration-500 md:static absolute md:min-h-fit min-h-[40vh] left-0 -top-[500%] md:w-auto  w-full flex items-center px-5">
+            <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 ">
+                <li>
+                    <a class="text-[#353b64] hover:text-[#fcdb65] font-medium duration-200" href="/">Home</a>
+                </li>
+                <li>
+                    <a class="text-[#353b64] hover:text-[#fcdb65] font-medium duration-200" href="/course">Course</a>
+                </li>
+                <li>
+                    <a class="text-[#353b64] hover:text-[#fcdb65] font-medium duration-200" href="/#about">About</a>
+                </li>
+                <li>
+                    <a class="text-[#353b64] hover:text-[#fcdb65] font-medium duration-200" href="#">New Course</a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex items-center gap-6">
+            <button class="bg-white border-2 border-[#265073] text-[#265073] px-5 py-2 rounded-lg duration-300 hover:scale-95 font-medium">Sign in</button>
+            <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
+        </div>
+</header>
+
+
+
+<script>
+    const navLinks = document.querySelector('.nav-links')
+    function onToggleMenu(e){
+        e.name = e.name === 'menu' ? 'close' : 'menu'
+        navLinks.classList.toggle('top-[99%]')
+        navLinks.classList.add('bg-white')
+    }
+</script>
