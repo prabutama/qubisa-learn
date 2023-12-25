@@ -1156,6 +1156,10 @@ video {
   font-size: 0.60rem;
 }
 
+.border-3 {
+  border-width: 3px;
+}
+
 .focus-within\:text-gray-600:focus-within {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));

@@ -17,6 +17,9 @@ module.exports = {
         ".text-xxs": {
           "font-size": "0.60rem",
         },
+        ".border-3": {
+          "border-width": "3px",
+        },
       }
       addUtilities(newUtilities);
     }
