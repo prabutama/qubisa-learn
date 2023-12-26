@@ -19,13 +19,13 @@
 </section>
 
 <section>
-    <div class="container mt-2 mx-auto">
+    <div class="container mt-2 mx-auto mb-20">
         <div class="mt-2 mb-6 lg:mb-8 ml-6">
-            <select id="countries" class="bg-gray-50 border border-gray-400 text-[#353b64] text-xs lg:text-sm rounded-sm lg:rounded-md focus:outline-none focus:ring-[#353b64] focus:border-[#353b64] block w-min px-1">
-                <option selected>Category</option>
-                <option value="US">Web Development</option>
-                <option value="CA">Mobile Development</option>
-                <option value="FR">Cyber Security</option>
+            <select id="categories" class="bg-gray-50 border border-gray-400 text-[#353b64] text-xs lg:text-sm rounded-sm lg:rounded-md focus:outline-none focus:ring-[#353b64] focus:border-[#353b64] block w-min px-1">
+                <option>All Category</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Mobile Development">Mobile Development</option>
+                <option value="Cyber Security">Cyber Security</option>
             </select>
         </div>
         <div class="flex lg:flex flex-wrap justify-center gap-5 lg:gap-15">
@@ -33,7 +33,7 @@
                 <div class="w-[43%] lg:w-[15%] bg-white rounded-md border-2 border-[#353b64] px-3 py-3 hover:scale-[1.03] hover:rotate-1 duration-200">
                     <a href="/course/<%= course._id %>">
                         <div class="bg-gray-200 rounded-md p-3">
-                            <img class="w-[50%] lg:w-[80%] mx-auto" src="/img/tailwind.svg" alt="">
+                            <img class="w-[50%] lg:w-[80%] mx-auto" src="<%= course.image %>" alt="">
                         </div>
                         <p class="text-xxs lg:text-xs text-gray-500 font-regular mt-1"><%= course.author %> <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
                         <p class="text-sm md:text-md text-[#353b64] font-medium mt-1"><%= course.title %></p>
@@ -46,12 +46,7 @@
     </div>
 </section>
 
+<script>
 
-
-<!-- <div class="h-[80px] overflow-y-scroll no-scrollbar px-1 py-1">
-        <p class="text-xs lg:text-xs text-[#353b64] font-regular">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi delectus debitis harum aut soluta! Rem, aut illum tempore voluptate laboriosam, ducimus repellat animi accusamus nobis, debitis impedit recusandae inventore doloremque consequuntur voluptatem quo libero soluta!</p>
-    </div>
-    <div class="flex justify-end lg:px-3">
-        <button class="text-sm mt-3 lg:my-4 bg-[#fcdb65] text-[#353b64] px-5 py-2 rounded-lg duration-300 hover:scale-95 font-medium">Enroll</button>
-    </div> -->
+</script>
 

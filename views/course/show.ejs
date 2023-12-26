@@ -6,19 +6,20 @@
             <div class="lg:w-[60%] bg-[#265073] px-5 py-7 lg:ml-14 h-fit rounded-md mt-2">
                 <div class="bg-white p-4 rounded-md">
                     <p class="lg:text-2xl text-gray-600 lg:font-semibold"><%= course.title %></p>
+                    <p class="text-xxs lg:text-lg text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i><%= course.category %></p>
                     <p class="text-xs lg:text-lg text-gray-600 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-lg text-[#FFC436] font-medium">4.9</span> (100) Reviews</p>
                     <p class="text-xxs lg:text-lg text-gray-600 font-regular mt-1">Author : <%= course.author %> <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
                     <p class="text-xxs lg:text-lg text-gray-600 font-regular mt-1">Last Update : 10/10/2023</p>
                     <p class="text-xxs lg:text-lg text-gray-600 font-regular mt-1">Language : English</p>
                 </div>
                 <div class="mt-10 flex gap-5">
-                    <div onclick="showElement('modul')" class="bg-yellow-300 p-2 px-3 rounded-md cursor-pointer">
+                    <div onclick="showElement('modul')" class="bg-yellow-300 hover:opacity-90 duration-150 p-2 px-3 rounded-md cursor-pointer">
                         <p class="text-xs lg:text-base font-medium">Modul</p>
                     </div>
-                    <div onclick="showElement('description')" class="bg-yellow-300 p-2 px-3 rounded-md cursor-pointer">
+                    <div onclick="showElement('description')" class="bg-yellow-300 hover:opacity-90 duration-150 p-2 px-3 rounded-md cursor-pointer">
                         <p class="font-medium text-xs lg:text-base">Description</p>
                     </div>
-                    <div onclick="showElement('reviews')" class="bg-yellow-300 p-2 px-3 rounded-md cursor-pointer">
+                    <div onclick="showElement('reviews')" class="bg-yellow-300 hover:opacity-90 duration-150 p-2 px-3 rounded-md cursor-pointer">
                         <p class="font-medium text-xs lg:text-base">Reviews</p>
                     </div>
                 </div>
@@ -35,15 +36,15 @@
                     <p class="text-sm lg:text-base text-gray-600">Reviews</p>
                 </div>
             </div>
-            <div class="lg:w-[30%] bg-[#265073] px-10 py-6 lg:mr-14 h-max rounded-md">
+            <div class="lg:w-[30%] bg-[#265073] px-10 py-6 lg:mr-14 h-max rounded-md lg:mt-2">
                 <div class="bg-white rounded-md p-3">
-                    <img class="w-[50%] lg:w-[60%] mx-auto" src="/img/tailwind.svg" alt="">
+                    <img class="w-[50%] lg:w-[60%] mx-auto" src="<%= course.image %>" alt="">
                 </div>
                 <div class="mt-7">
                     <p class="text-sm lg:text-xl font-medium text-white">Course Benefit</p>
                     <div class="mt-3">
-                        <p class="text-xxs text-white"><i class="bi bi-book-half mt-2 mr-2 text-white"></i> 20 Moduls</p>
-                        <p class="text-xxs text-white"><i class="bi bi-patch-check-fill mt-2 mr-2 text-white"></i>  Certificate</p>
+                        <p class="text-xxs lg:text-base text-white"><i class="bi bi-book-half mt-2 mr-2 text-white"></i> 20 Moduls</p>
+                        <p class="text-xxs lg:text-base text-white"><i class="bi bi-patch-check-fill mt-2 mr-2 text-white"></i>  Certificate</p>
                     </div>
                 </div>
             </div>

@@ -41,6 +41,10 @@ app.get('/course/:id', async (req, res) => {
     res.render('course/show', { course });
 });
 
+app.get('/signin', (req, res) => {
+    res.render('signin');
+})
+
 app.listen(8000, () => {
     console.log('Server running on http://localhost:8000');
 });
