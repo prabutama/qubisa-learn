@@ -1,0 +1,82 @@
+<%- layout('layouts/app') %>
+
+<section class="lg:px-2">
+    <div class="container mx-auto py-5 lg:py-10">
+        <div class="lg:flex justify-center gap-10 mx-auto py-10 lg:py-24 bg-gray-300 lg:rounded-md">
+            <div id="signin" class="w-[95%] lg:w-[40%] mx-auto bg-white lg:rounded-r-2xl element rounded-md">
+                <div class="lg:mt-20 py-6 px-3">
+                    <p class="text-xl lg:text-3xl text-center mb-2">Hello!! 👋 Lets Sign and Explore</p>
+                    <label for="terms" class="ms-[70px] text-xs lg:text-sm font-medium">Dont have account? <a onclick="showElement('signup')" class="text-[#353b64] cursor-pointer hover:underline">Sign Up</a></label>
+                    <form class="max-w-sm mx-auto mt-8" action="/auth/signin" method="POST">
+                        <div class="mb-5">
+                            <label for="name" class="block mb-2 text-xs lg:text-sm font-medium text-gray-900">Username</label>
+                            <input type="text" id="name" name="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="password" class="block mb-2 text-xs lg:text-sm font-medium text-gray-900">password</label>
+                            <input type="password" id="password" name="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required>
+                        </div>
+                        <div class="flex items-start mb-5">
+                            <label for="terms" class="ms-2 text-xs lg:text-base font-medium"> <a href="#" class="text-[#353b64] hover:underline">Forgod your password?</a></label>
+                        </div>
+                        <button type="submit" class="text-[#353b64] bg-yellow-300 hover:bg-yellow-400 active:scale-95 font-medium rounded-lg text-sm px-5 py-2.5 text-center scale-75 lg:scale-100">Sign In</button>
+                    </form>
+                </div>
+            </div>
+            <div id="signup" class="w-[90%] mx-auto lg:w-[40%] bg-white lg:rounded-r-2xl element rounded-md">
+                <div class="lg:mt-20 py-6 px-3">
+                    <p class="text-xl lg:text-3xl text-center mb-2">Welcome!! 🙌 <span class="block lg:inline">Grow with Qubisa</span></p>
+                    <label for="terms" class="ms-[70px] text-xs lg:text-sm font-medium">have a account? <a onclick="showElement('signin')" class="text-[#353b64] cursor-pointer hover:underline">Sign In</a></label>
+                    <form class="max-w-sm mx-auto mt-8" action="/auth/signup" method="POST">
+                        <div class="mb-5">
+                            <label for="name" class="block mb-2 text-xs lg:text-sm font-medium text-gray-900">Username</label>
+                            <input type="text" id="name" name="username" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="email" class="block mb-2 text-xs lg:text-sm font-medium text-gray-900">email</label>
+                            <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder:text-xs" placeholder="prabutama@gmail.com" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="password" class="block mb-2 text-xs lg:text-sm font-medium text-gray-900">password</label>
+                            <input type="password" id="password" name="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required>
+                        </div>
+                        <div class="flex items-start mb-5">
+                        <div class="flex items-center h-5">
+                            <input id="terms" checked type="checkbox">
+                        </div>
+                            <label class="ms-2 text-xs lg:text-base font-medium text-gray-900">I agree with the <a class="text-blue-600 hover:underline ">terms and conditions</a></label>
+                        </div>
+                        <button id="button" type="submit" class="text-[#353b64] bg-yellow-300 left-0 hover:bg-yellow-400 active:scale-95 font-medium rounded-lg text-sm px-5 py-2.5 text-center scale-75 lg:scale-100 disabled:bg-gray-300 disabled:hover:scale-100">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+            <div class="hidden lg:block w-[60%] bg-white rounded-l-2xl">
+                <img class="w-[90%] mx-auto" src="/img/signin.svg" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    showElement('signin');
+    showElement('signin');
+
+    function showElement(elementId) {
+    let allElements = document.querySelectorAll('.element');
+        allElements.forEach(function(element) {
+        element.style.display = 'none';
+    });
+
+    let elementToShow = document.getElementById(elementId);
+        if (elementToShow) {
+            elementToShow.style.display = 'block';
+        }
+    };
+
+    let terms = document.querySelector('#terms');
+    let button = document.querySelector('#button');
+
+    terms.addEventListener('change', function() {
+        button.disabled = !terms.checked;
+    });
+</script>

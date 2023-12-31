@@ -12,16 +12,20 @@ mongoose.connect('mongodb://127.0.0.1/qubisa_db')
 async function seedCourse() {
     const course = [
         {
-            title: 'HTML and CSS Fundamentals',
+            title: 'HTML Fundamentals',
             author: 'John Doe',
             category: 'Web Development',
-            image: '/img/html.svg'
+            image: '/img/html.svg',
+            video: [
+                { title: 'HTML introduction', url: 'https://www.youtube.com/embed/qLfn209bThs?si=FcYh4ZOOyF_nY8f6'},
+                { title: 'How HTML work?', url: 'https://www.youtube.com/embed/OjPhwAapQfs?si=CG514MPiMZkNVHnO'},
+            ]
         },
         {
             title: 'React.js for Beginners',
             author: 'Jane Smith',
             category: 'Web Development',
-            image: '/img/react.svg'
+            image: '/img/react.svg',
         },
         {
             title: 'Mobile App Development with Flutter',

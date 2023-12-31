@@ -1,7 +1,7 @@
 <%- layout('layouts/app') %>
 
-<section class="px-3">
-    <div class="container mx-auto mt-10">
+<section class="px-3 py-10">
+    <div class="container mx-auto">
         <div class="flex flex-col-reverse lg:flex-row lg:flex lg:flex-wrap lg:justify-between bg-gray-300 rounded-md py-10 px-2">
             <div class="lg:w-[60%] bg-[#265073] px-5 py-7 lg:ml-14 h-fit rounded-md mt-2">
                 <div class="bg-white p-4 rounded-md">
@@ -24,17 +24,63 @@
                     </div>
                 </div>
                 <div id="modul" class="bg-white mt-5 p-3 h-[200px] lg:h-[300px] overflow-y-scroll no-scrollbar rounded-md gap-3 hidden">
-                    <div class="border-2 p-2 px-4 rounded-lg my-2 cursor-pointer">
-                        <p class="text-xxs lg:text-base" ><i class="bi bi-play-circle-fill mr-2 text-gray-600"></i> viedo - <%= course.title %></p>
-                    </div>
+                    <% for (let video of videos) { %>
+                        <div class="border-2 p-2 px-4 rounded-lg my-2">
+                            <a href="/course/<%= course._id %>/modul"><p class="text-xxs lg:text-base" ><i class="bi bi-play-circle-fill mr-2 text-gray-600"></i> <%= video.title %></p></a>
+                            <div class="relative scale-0 lg:scale-100">
+                                <% if (currentUser.username == 'admin') { %>
+                                    <form action="/course/<%= course._id %>/modul/<%= video._id %>?_method=DELETE" method="POST" class="absolute -top-5 lg:-top-6 right-0">
+                                        <button><i class="bi bi-trash3-fill text-xxs lg:text-base"></i></button>
+                                    </form>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% } %>     
                 </div>
                 <div id="description" class="bg-white mt-5 p-3 h-[200px] lg:h-[300px] overflow-y-scroll no-scrollbar rounded-md hidden">
                     <p class="text-sm lg:text-xl font-medium text-gray-600"><%= course.title %></p>
                     <p class="text-xxs lg:text-base mt-1 lg:mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum in, magnam dolorum itaque officia ex odio eveniet ratione tempore, rerum earum et possimus libero porro quod cupiditate quia amet id molestias! Deserunt accusamus perspiciatis minima provident! Ullam quidem veniam accusantium obcaecati reiciendis, nesciunt commodi repudiandae nisi ratione consectetur odit eaque.</p>
                 </div>
-                <div id="reviews" class="bg-white mt-5 p-3 h-[200px] lg:h-[300px] overflow-y-scroll no-scrollbar rounded-md hidden">
-                    <p class="text-sm lg:text-base text-gray-600">Reviews</p>
+                <div id="reviews" class="bg-white mt-5 p-3 h-[200px] lg:h-[300px] overflow-y-scroll no-scrollbar rounded-md hidden lg:relative">
+                    <p class="text-sm lg:text-lg font-semibold text-gray-600 mb-2">Reviews</p>
+                    <div>
+                        <% for (let review of reviews) { %> 
+                            <div class="border-2 lg:w-[50%] py-2 px-3 rounded-md left-0 mb-2 relative">
+                                <p><%= review.author %></p>
+                                <p class="font-medium text-xxs lg:text-base" >Rating : <span class="font-normal"><%= review.rating %></span></p>
+                                <hr class="my-1 lg:w-[30%]">
+                                <p class="font-medium text-xxs lg:text-base">Review : <span class="font-normal"><%= review.body %></span></p>
+                                <% if (currentUser.username == 'admin') { %>
+                                    <form action="/course/<%= course._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="absolute top-[55%] lg:top-[60%] right-2 lg:right-3">
+                                        <button><i class="bi bi-trash3-fill text-xxs lg:text-base"></i></button>
+                                    </form>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </div>
+                    <form class="w-[300px] p-3 rounded-md lg:absolute right-0 lg:top-0 scale-0 lg:scale-100" action="/course/<%= course._id%>/reviews" method="POST">
+                        <div class="mb-2">
+                            <label for="title" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Rating</label>
+                            <input type="range" name="reviews[rating]" id="rating" min="1" max="5" class="text-sm shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="author" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Review</label>
+                            <textarea type="text" name="reviews[body]" id="body" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2" required></textarea>
+                        </div>
+                        <button class="p-2 bg-yellow-300 rounded-md text-black font-medium text-sm" type="submit">Submit</button>
+                    </form>  
                 </div>
+                <form class="w-[300px] p-3 rounded-md right-0 lg:hidden" action="/course/<%= course._id%>/reviews" method="POST">
+                    <div class="mb-2">
+                        <label for="title" class="block mb-2 text-xs font-medium text-white">Rating</label>
+                        <input type="range" name="reviews[rating]" id="rating" min="1" max="5" class="text-sm shadow-sm bg-gray-50 border border-gray-300 rounded-lg block w-full" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="author" class="block mb-2 text-xs font-medium text-white">Review</label>
+                        <textarea type="text" name="reviews[body]" id="body" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2" required></textarea>
+                    </div>
+                    <button class="p-1 px-2 bg-yellow-300 rounded-md text-black font-medium text-xs" type="submit">Submit</button>
+                </form> 
             </div>
             <div class="lg:w-[30%] bg-[#265073] px-10 py-6 lg:mr-14 h-max rounded-md lg:mt-2">
                 <div class="bg-white rounded-md p-3">
@@ -47,6 +93,31 @@
                         <p class="text-xxs lg:text-base text-white"><i class="bi bi-patch-check-fill mt-2 mr-2 text-white"></i>  Certificate</p>
                     </div>
                 </div>
+                <% if (currentUser.username == 'admin') { %>
+                    <div class="relative scale-0 lg:scale-100">
+                        <div class="bg-red-500 p-1 lg:p-2 px-3 rounded-md hover:scale-95 w-fit mt-5 absolute -bottom-20 -left-10">
+                            <form action="/course/<%= course._id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="text-white text-xs lg:text-base">Delete</button>
+                            </form>
+                        </div>
+                        <div class="bg-green-500 p-1 lg:p-2 px-3 rounded-md hover:scale-95 w-fit mt-5 absolute -bottom-20 left-10">
+                            <a href="/course/<%= course.id %>/edit" class="text-white text-xs lg:text-base">Edit</a>
+                        </div>
+                        <div class="bg-yellow-300 p-2 px-3 rounded-md mt-5 absolute top-20 -left-10">
+                            <form class="w-[300px]" action="/course/<%= course._id%>/modul" method="POST">
+                                <div class="mb-2">
+                                    <label for="title" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Title</label>
+                                    <input type="text" name="video[title]" id="title" class="text-xs shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="author" class="block mb-2 text-sm font-medium text-gray-900">Src</label>
+                                    <input type="text" name="video[url]" id="author" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xxs lg:text-base rounded-lg block w-full p-2.5" required>
+                                </div>
+                                <button class="p-2 bg-blue-400 rounded-md text-white text-xs lg:text-base" type="submit">Add Video</button>
+                            </form>    
+                        </div>
+                    </div>
+                <% } %>
             </div>
         </div>
     </div>

@@ -12,20 +12,33 @@
                     <a class="text-[#353b64] hover:text-yellow-300 font-medium duration-200" href="/">Home</a>
                 </li>
                 <li>
-                    <a class="text-[#353b64] hover:text-yellow-300 font-medium duration-200" href="/course">Course</a>
-                </li>
-                <li>
                     <a class="text-[#353b64] hover:text-yellow-300 font-medium duration-200" href="/#about">About</a>
                 </li>
                 <li>
-                    <a class="text-[#353b64] hover:text-yellow-300 font-medium duration-200" href="#">New Course</a>
+                    <a class="text-[#353b64] hover:text-yellow-300 font-medium duration-200" href="/course">Course</a>
                 </li>
             </ul>
         </div>
+        <% if (!currentUser) { %>
         <div class="flex items-center gap-6">
-            <a href="/signin" class="bg-white border-2 border-[#265073] text-[#265073] px-5 py-2 rounded-lg duration-300 hover:scale-95 hover:bg-slate-100 font-medium">Sign in</a>
+            <a href="/auth" class="bg-white border-2 border-[#265073] text-[#265073] px-5 py-2 rounded-lg duration-300 scale-75 lg:scale-100 hover:bg-slate-100 lg:active:scale-95 font-medium">Sign in</a>
             <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
         </div>
+        <% } else { %>
+            <div class="flex items-center gap-6">
+                <p class="font-semibold"><%= currentUser.username %></p>
+                <i class="bi bi-person-circle text-3xl text-[#265073] cursor-pointer" onclick="
+                    document.getElementById('logout').classList.toggle('hidden');
+                    "></i>
+                <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer md:hidden"></ion-icon>
+                <div id="logout" class="absolute bg-gray-300 top-[110%] right-10 lg:right-20 rounded-md shadow-md py-2 px-5 hidden duration-200 z-30">
+                    <form action="/auth/logout" method="POST" id="logout-form">
+                        <button type="submit" class="text-sm">Logout<i class="bi bi-box-arrow-right ml-2 text-lg font-extrabold"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+        <% } %>
 </header>
 
 

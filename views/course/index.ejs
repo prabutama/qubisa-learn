@@ -20,15 +20,14 @@
 
 <section>
     <div class="container mt-2 mx-auto mb-20">
-        <div class="mt-2 mb-6 lg:mb-8 ml-6">
-            <select id="categories" class="bg-gray-50 border border-gray-400 text-[#353b64] text-xs lg:text-sm rounded-sm lg:rounded-md focus:outline-none focus:ring-[#353b64] focus:border-[#353b64] block w-min px-1">
-                <option>All Category</option>
-                <option value="Web Development">Web Development</option>
-                <option value="Mobile Development">Mobile Development</option>
-                <option value="Cyber Security">Cyber Security</option>
-            </select>
+        <div class="mt-2 mb-6 lg:mb-8 ml-6 flex gap-4 justify-between pr-10">
+            <% if (currentUser.username == 'admin') { %>
+                <div class="bg-[#353b64] pb-1 lg:p-2 px-3 rounded-md hover:scale-95 scale-0 lg:scale-100">
+                <a href="/course/create" class="text-white text-xs lg:text-base">Add Course</a>
+            </div>
+            <% } %>
         </div>
-        <div class="flex lg:flex flex-wrap justify-center gap-5 lg:gap-15">
+        <div id="course-list" class="flex lg:flex flex-wrap justify-center gap-5 lg:gap-15">
             <% for (let course of courses) { %>
                 <div class="w-[43%] lg:w-[15%] bg-white rounded-md border-2 border-[#353b64] px-3 py-3 hover:scale-[1.03] hover:rotate-1 duration-200">
                     <a href="/course/<%= course._id %>">
@@ -40,13 +39,12 @@
                         <p class="text-xxs lg:text-xs text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i><%= course.category %></p>
                         <p class="text-xs lg:text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-sm text-[#FFC436] font-medium">4.9</span> (100) Reviews</p>
                     </a>
-                </div>
+                </div>  
             <% } %>       
         </div>
     </div>
 </section>
 
 <script>
-
 </script>
 

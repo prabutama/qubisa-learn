@@ -1,0 +1,48 @@
+<%- layout('layouts/app') %>
+
+<section class="font-[poppins] bg-gray-300 lg:flex justify-center gap-10 py-6 lg:py-3">
+    <div id="sidebar" class="bg-[#265073] w-[75%] lg:w-[25%] rounded-r-md transition-all duration-500 absolute lg:static z-10">
+        <div class="relative">
+            <p onclick="toggle()" class="cursor-pointer"><i id="btn-nav" class="bi bi-arrow-left-square-fill text-2xl lg:text-4xl absolute -right-7 lg:-right-10 top-0 lg:top-5 text-[#265073]"></i></p>
+        </div>
+        <div class="px-10 py-5 flex flex-col gap-2">
+            <% for (let i = 0; i < videos.length; i++) { %> 
+                <div class="bg-gray-300 py-1 lg:py-2 px-3 rounded-md btn-video">
+                    <p onclick="showVideo('<%= videos[i].url %>')" class="text-xxs lg:text-lg cursor-pointer"> <i class="bi bi-play-circle-fill mr-2"></i><%= videos[i].title %></p>
+                </div>
+            <% } %>    
+        </div>
+    </div>
+    <div id="video-wrapper" class="bg-gray-300 w-full lg:w-[75%] px-2 py-10 lg:py-5 lg:px-20 duration-500">
+        <div class="border-2 border-[#265073] rounded-md mx-auto">
+            <div id="video-container" class="aspect-w-11 aspect-h-6 lg:aspect-w-15 lg:aspect-h-9">
+                <% for (let video of videos) { %> 
+                    <iframe id="video-player" src="" class="rounded-t-md" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <% } %>
+            </div>
+            <div class="p-3 py-5 bg-[#265073] rounded-b-sm">
+                <p class="text-xs lg:text-2xl text-white font-medium lg:font-semibold"></p>
+            </div>
+        </div>
+</section>
+
+<script>
+    let sidebar = document.querySelector('#sidebar');
+    let btnNav = document.querySelector('#btn-nav');
+    let videoWrapper = document.querySelector('#video-wrapper');
+
+    function toggle () {
+        sidebar.classList.toggle('-translate-x-[100%]');
+        sidebar.classList.toggle('mr-0');
+        btnNav.classList.toggle('rotate-180');
+        videoWrapper.classList.toggle('lg:-translate-x-[20%]');
+    }
+
+    function showVideo(videoUrl) {
+        const videoContainer = document.querySelector('#video-container');
+        videoContainer.innerHTML = '';
+        let video = document.createElement('iframe');
+        video.src = videoUrl;
+        videoContainer.appendChild(video);
+    }
+</script>

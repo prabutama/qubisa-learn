@@ -1,0 +1,33 @@
+<%- layout('layouts/app') %>
+
+<section class="py-20 px-[400px]">
+    <div class="bg-[#353b64] p-2 w-fit rounded-md mb-2">
+        <p class="text-xl text-white">Edit course</p>
+    </div>
+    <div class="bg-gray-300 rounded-md py-10">
+        <form class="max-w-lg mx-auto mt-8" action="/course/<%= course._id %>?_method=PUT" method="POST">
+            <div class="mb-5">
+                <label for="title" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Title</label>
+                <input type="text" name="course[title]" id="title" class="text-xs lg:text-base shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5" value="<%= course.title %>" required>
+            </div>
+            <div class="mb-5">
+                <label for="author" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Author</label>
+                <input type="text" name="course[author]" id="author" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xxs lg:text-base rounded-lg block w-full p-2.5" value="<%= course.author %>" required>
+            </div>
+            <div class="mb-5">
+                <label for="image" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Image</label>
+                <input type="text" name="course[image]" id="image" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-xxs lg:text-base rounded-lg block w-full p-2.5" value="<%= course.image %>" required>
+            </div>
+            <div class="mb-5">
+                <label for="category" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Category</label>
+                <select id="categories" name="course[category]" class="bg-gray-50 border border-gray-400 text-[#353b64] text-xs lg:text-base rounded-sm lg:rounded-md focus:outline-none p-2 focus:ring-[#353b64] focus:border-[#353b64] block w-min">
+                    <option value="All">All Category</option>
+                    <option value="Web Development" <% if (course.category === 'Web Development') { %>selected<%} %> >web Development</option>
+                    <option value="Mobile Development" <% if (course.category === 'Mobile Development') { %>selected<%} %>>Mobile Development</option>
+                    <option value="Cyber Security" <% if (course.category === 'Cyber Security') { %>selected<%} %>>Cyber Security</option>
+                </select>
+            </div>
+            <button type="submit" class="text-[#353b64] bg-yellow-300 hover:scale-95 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xxs lg:text-base px-5 py-2.5 text-center scale-75 lg:scale-100">Save</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+<% if (success_msg && success_msg.length) { %> 
+    <div class="bg-green-100 text-center border border-green-400 text-green-700 w-[70%] lg:w-[30%] p-2 lg:px-4 lg:py-3 top-32 left-[15%] lg:left-[35%] rounded-md absolute z-20 duration-300" role="alert">
+        <strong class="text-xs lg:text-base font-bold text-center"><%= success_msg %></strong>
+    </div>
+<% } %>    
+
+<% if (error_msg && error_msg.length) { %> 
+    <div class="bg-red-100 text-center border border-red-400 text-red-700 w-[70%] lg:w-[30%] p-2 lg:px-4 lg:py-3 top-32 left-[15%] lg:left-[35%] rounded-md absolute z-20 duration-300" role="alert">
+        <strong class="font-bold"><%= error_msg %></strong>
+    </div>
+<% } %>    
+

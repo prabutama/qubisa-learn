@@ -5,6 +5,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require('@tailwindcss/aspect-ratio'),
     function({addUtilities}){
       const newUtilities = {
         ".no-scrollbar::-webkit-scrollbar": {
