@@ -37,7 +37,7 @@
                         <p class="text-xxs lg:text-xs text-gray-500 font-regular mt-1"><%= course.author %> <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
                         <p class="text-sm md:text-md text-[#353b64] font-medium mt-1"><%= course.title %></p>
                         <p class="text-xxs lg:text-xs text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i><%= course.category %></p>
-                        <p class="text-xs lg:text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-sm text-[#FFC436] font-medium">4.9</span> (100) Reviews</p>
+                        <p class="text-xs lg:text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-sm text-[#FFC436] font-medium"><%= course.averageRating %></span> (<%= course.reviewsCount %>) Reviews</p>
                     </a>
                 </div>  
             <% } %>       

@@ -13,6 +13,7 @@ const LocalStrategy = require('passport-local');
 // Models
 const Course = require('./models/course');
 const User = require('./models/user');
+const wrapAsync = require('./utils/wrapAsync');
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
@@ -57,9 +58,32 @@ mongoose.connect("mongodb://127.0.0.1/qubisa_db")
 }); 
 
 
-app.get("/", (req, res) => {
-    res.render("home");
-});
+app.get("/", wrapAsync(async (req, res) => {
+    const courses = await Course.find(); 
+
+        // Filter hanya kursus dengan rata-rata rating di atas 3
+        const highRatedCourses = courses.filter(course => {
+            const reviewsCount = course.reviews.length;
+            const totalRating = course.reviews.reduce((total, review) => total + review.rating, 0);
+            const averageRating = reviewsCount > 0 ? totalRating / reviewsCount : 0;
+
+            return averageRating > 3.5;
+        });
+
+        const coursesWithReviewCount = highRatedCourses.map(course => {
+            const reviewsCount = course.reviews.length;
+            const totalRating = course.reviews.reduce((total, review) => total + review.rating, 0);
+            const averageRating = reviewsCount > 0 ? (totalRating / reviewsCount).toFixed(1) : 0;
+
+            return {
+                ...course.toObject(),
+                reviewsCount: course.reviews.length,
+                averageRating: averageRating
+            };
+        });
+
+    res.render("home", { courses: coursesWithReviewCount,});
+}));
 
 // Router
 app.use('/course', require('./routes/course'));   

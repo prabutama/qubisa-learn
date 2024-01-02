@@ -7,7 +7,17 @@ const isAuth = require('../middlewares/isAuth');
 
 router.get('/', isAuth, wrapAsync(async (req, res) => {
     const courses = await Course.find(); 
-    res.render('course/index', { courses });
+    const coursesWithReviewCount = courses.map(course => {
+        const reviewsCount = course.reviews.length;
+        const totalRating = course.reviews.reduce((total, review) => total + review.rating, 0);
+        const averageRating = reviewsCount > 0 ? (totalRating / reviewsCount).toFixed(1) : 0;
+        return {
+            ...course.toObject(),
+            reviewsCount: course.reviews.length,
+            averageRating: averageRating
+        };
+    });
+    res.render('course/index', { courses : coursesWithReviewCount });
 }));
 
 router.post('/', isAuth,  wrapAsync(async (req, res, next) => {
@@ -28,8 +38,12 @@ router.get('/create', isAuth, wrapAsync(async (req, res) => {
 router.get('/:id', isAuth, isValidObjectId('/course'), wrapAsync(async (req, res) => {
     const course = await Course.findById(req.params.id); 
     const videos = course.video;
+    const videoCount = videos.length;
     const reviews = course.reviews;
-    res.render('course/show', { course, videos, reviews });
+    const reviewsLength = reviews.length;
+    const totalRating = course.reviews.reduce((total, review) => total + review.rating, 0);
+    const averageRating = reviewsLength > 0 ? (totalRating / reviewsLength).toFixed(1) : 0;
+    res.render('course/show', { course, videos, reviews, reviewsLength, averageRating, videoCount });
 }));
 
 router.get('/:id/edit', isAuth, isValidObjectId('/course'), wrapAsync(async (req, res) => {
