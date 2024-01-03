@@ -8,7 +8,7 @@
                 <p class="md:text-lg text-[#353b64] font-medium mt-2">The place where you can change youre codes to languanges and build youre creativity with Qubisa Learn.</p>
                 <p class="md:text-lg text-[#353b64] font-medium">Lets find miracle programming together</p>
                 <div class="my-4 bg-yellow-300 px-5 py-2 rounded-lg hover:bg-yellow-400 active:scale-95 w-fit">
-                    <a href="/auth" class="text-[#353b64] font-medium">Join Now</a>
+                    <a href="<%= currentUser ? '/course' : '/auth' %>" class="text-[#353b64] font-medium">Join Now</a>
                 </div>
             </div>
             <div class="w-full px-4 py-4 lg:w-1/2">
@@ -75,20 +75,20 @@
             </div>
             <div class="w-full py-4 lg:w-[60%] mt-3">
                 <div class="flex flex-wrap justify-center lg:flex-row lg:flex-wrap gap-6">
-                    <a href="/course">
-                        <div data-aos="flip-right" class="w-[150px] h-[200px] lg:w-[200px] lg:h-[250px] bg-white rounded-xl py-3 px-3 duration-300 hover:scale-105">
+                    <a href="/course?search=web" class="hover:scale-105 duration-300">
+                        <div data-aos="flip-right" class="w-[150px] h-[200px] lg:w-[200px] lg:h-[250px] bg-white rounded-xl py-3 px-3">
                             <img class="mx-auto h-max" src="/img/web.jpg" alt="">
                             <p class="text-center text-[#265073] font-medium">Web Development</p>
                         </div>
                     </a>
-                    <a href="/course">
-                        <div data-aos="flip-right" class="w-[150px] h-[200px] lg:w-[200px] lg:h-[250px] bg-white rounded-xl py-3 px-3 duration-300 hover:scale-105">
+                    <a href="/course?search=mobile" class="duration-300 hover:scale-105">
+                        <div data-aos="flip-right" class="w-[150px] h-[200px] lg:w-[200px] lg:h-[250px] bg-white rounded-xl py-3 px-3">
                             <img class="mx-auto w-[95%] h-max" src="/img/mobile.jpg" alt="">
                             <p class="text-center text-[#265073] font-medium">Mobile Development</p>
                         </div>
                     </a>
-                    <a href="/course">
-                        <div data-aos="flip-right" class="w-[150px] h-[200px] lg:w-[200px] lg:h-[250px]  bg-white rounded-xl py-3 px-3 duration-300 hover:scale-105">
+                    <a href="/course?search=cyber" class="duration-300 hover:scale-105">
+                        <div data-aos="flip-right" class="w-[150px] h-[200px] lg:w-[200px] lg:h-[250px]  bg-white rounded-xl py-3 px-3">
                             <img class="mx-auto w-[95%] h-max" src="/img/cyber.jpg" alt="">
                             <p class="text-center text-[#265073] font-medium">Cyber Security</p>
                         </div>
@@ -134,40 +134,4 @@
 
     gsap.fromTo('.char', { opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, delay: 0.02, duration: 0.3 })
 </script>
-
-
-
-<!-- <div class="w-[43%] lg:w-[17%] bg-white rounded-lg border-2 border-[#353b64] px-3 py-3 hover:scale-[1.03] hover:rotate-1 duration-200">
-    <a href="#">
-        <div class="bg-gray-300 rounded-md p-3">
-            <img class="w-[50%] lg:w-[80%] mx-auto" src="/img/mongodb.svg" alt="">
-        </div>
-        <p class="text-xs lg:text-xs text-gray-500 font-regular mt-1">Jhon Doe <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
-        <p class="text-sm md:text-md text-[#353b64] font-medium mt-1">MongoDB for Beginner </p>
-        <p class="text-xs text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i> Web Developmnet</p>
-        <p class="text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-sm text-[#FFC436] font-medium">4.9</span> (100) Reviews</p>
-    </a>
-</div>
-<div class="w-[43%] lg:w-[17%] bg-white rounded-lg border-2 border-[#353b64] px-3 py-3 hover:scale-[1.03] hover:rotate-1 duration-200">
-    <a href="#">
-        <div class="bg-gray-300 rounded-md p-3">
-            <img class="w-[50%] lg:w-[80%] mx-auto" src="/img/swift.svg" alt="">
-        </div>
-        <p class="text-xs lg:text-xs text-gray-500 font-regular mt-1">Alex <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
-        <p class="text-sm md:text-md text-[#353b64] font-medium mt-1">iOS App Development with Swift </p>
-        <p class="text-xs text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i> Mobile Development</p>
-        <p class="text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-sm text-[#FFC436] font-medium">4.9</span> (100) Reviews</p>
-    </a>
-</div>
-<div class="w-[43%] lg:w-[17%] bg-white rounded-lg border-2 border-[#353b64] px-3 py-3 hover:scale-[1.03] hover:rotate-1 duration-200">
-    <a href="#">
-        <div class="bg-gray-300 rounded-md p-3">
-            <img class="w-[50%] lg:w-[80%] mx-auto" src="/img/kali.svg" alt="">
-        </div>
-        <p class="text-xs lg:text-xs text-gray-500 font-regular mt-1">Miguel <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
-        <p class="text-sm md:text-md text-[#353b64] font-medium mt-1">Kali Linux Fundamental </p>
-        <p class="text-xs text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i> Cyber Security</p>
-        <p class="text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-sm text-[#FFC436] font-medium">4.9</span> (100) Reviews</p>
-    </a>
-</div> -->
 

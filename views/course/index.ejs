@@ -3,14 +3,14 @@
 <section>
     <div class="container mx-auto py-6 px-3">
         <div class="mx-auto bg-yellow-300 py-6 rounded-md">
-            <p class="text-lg md:text-xl text-center text-[#353b64] font-medium">Explore course is you want</p>
-            <p class="text-xs lg:text-md text-center text-[#353b64] font-medium lg:mt-1 mb-2">Lorem ipsum dolor quam mquepudiandae!</p>
-            <form action="/" class="">
+            <p class="text-lg md:text-xl text-center text-[#353b64] font-medium">find your best course and achieve your goals</p>
+            <p class="text-xs lg:text-md text-center text-[#353b64] font-medium lg:mt-1 mb-2">There are numerous courses available in various categories.</p>
+            <form id="search-bar" action="" class="">
                 <div class="relative flex items-center text-sm text-gray-400 focus-within:text-gray-600">
                     <div class="absolute left-[19%] lg:left-[36%]">
                         <i class="bi bi-search text-sm text-gray-500 lg:text-xl"></i>
                     </div>
-                    <input type="text" name="search" placeholder="Search talk" autocomplete="off" aria-label="Search talk" class="w-[70%] lg:w-[30%] mx-auto pr-3 pl-10 py-2 font-regular placeholder-gray-500 text-black ring-2 ring-slate-300 rounded-2xl border-none focus:outline-none focus:border-[#353b64] focus:ring-[#353b64] focus:ring-2">
+                    <input type="text" name="search" placeholder="Search course" autocomplete="off" aria-label="Search course" class="w-[70%] lg:w-[30%] mx-auto pr-3 pl-10 py-2 font-regular placeholder-gray-500 text-black ring-2 ring-slate-300 rounded-2xl border-none focus:outline-none focus:border-[#353b64] focus:ring-[#353b64] focus:ring-2">
                 </div>
             </form>
         </div>
@@ -37,7 +37,7 @@
                         <p class="text-xxs lg:text-xs text-gray-500 font-regular mt-1"><%= course.author %> <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
                         <p class="text-sm md:text-md text-[#353b64] font-medium mt-1"><%= course.title %></p>
                         <p class="text-xxs lg:text-xs text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i><%= course.category %></p>
-                        <p class="text-xs lg:text-sm text-gray-500 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-sm text-[#FFC436] font-medium"><%= course.averageRating %></span> (<%= course.reviewsCount %>) Reviews</p>
+                        <p class="text-xs lg:text-sm text-gray-500 mt-2"><i class="bi bi-star-fill mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-sm text-[#FFC436] font-medium"><%= course.averageRating %></span> (<%= course.reviewsCount %>) Reviews</p>
                     </a>
                 </div>  
             <% } %>       

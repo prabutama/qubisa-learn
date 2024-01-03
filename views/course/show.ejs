@@ -7,7 +7,7 @@
                 <div class="bg-white p-4 rounded-md">
                     <p class="lg:text-2xl text-gray-600 lg:font-semibold"><%= course.title %></p>
                     <p class="text-xxs lg:text-lg text-gray-500 mt-2"><i class="bi bi-tags-fill mr-1 text-gray-500"></i><%= course.category %></p>
-                    <p class="text-xs lg:text-lg text-gray-600 mt-2"><i class="bi bi-star-half mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-lg text-[#FFC436] font-medium"><%= averageRating %></span> (<%= reviewsLength %>) Reviews</p>
+                    <p class="text-xs lg:text-lg text-gray-600 mt-2"><i class="bi bi-star-fill mr-1 text-[#FFC436]"></i> <span class="text-xs lg:text-lg text-[#FFC436] font-medium"><%= averageRating %></span> (<%= reviewsLength %>) Reviews</p>
                     <p class="text-xxs lg:text-lg text-gray-600 font-regular mt-1">Author : <%= course.author %> <i class="bi bi-check-square-fill mr-1 text-green-500"></i></p>
                     <p class="text-xxs lg:text-lg text-gray-600 font-regular mt-1">Last Update : 10/10/2023</p>
                     <p class="text-xxs lg:text-lg text-gray-600 font-regular mt-1">Language : English</p>
@@ -30,7 +30,7 @@
                             <div class="relative scale-0 lg:scale-100">
                                 <% if (currentUser.username == 'admin') { %>
                                     <form action="/course/<%= course._id %>/modul/<%= video._id %>?_method=DELETE" method="POST" class="absolute -top-5 lg:-top-6 right-0">
-                                        <button><i class="bi bi-trash3-fill text-xxs lg:text-base"></i></button>
+                                        <button ty><i class="bi bi-trash3-fill text-xxs lg:text-base"></i></button>
                                     </form>
                                 <% } %>
                             </div>
@@ -42,45 +42,68 @@
                     <p class="text-xxs lg:text-base mt-1 lg:mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum in, magnam dolorum itaque officia ex odio eveniet ratione tempore, rerum earum et possimus libero porro quod cupiditate quia amet id molestias! Deserunt accusamus perspiciatis minima provident! Ullam quidem veniam accusantium obcaecati reiciendis, nesciunt commodi repudiandae nisi ratione consectetur odit eaque.</p>
                 </div>
                 <div id="reviews" class="bg-white mt-5 p-3 h-[200px] lg:h-[300px] overflow-y-scroll no-scrollbar rounded-md hidden lg:relative">
-                    <p class="text-sm lg:text-lg font-semibold text-gray-600 mb-2">Reviews</p>
-                    <div>
+                    <div class="lg:relative flex flex-col-reverse">
                         <% for (let review of reviews) { %> 
                             <div class="border-2 lg:w-[50%] py-2 px-3 rounded-md left-0 mb-2 relative">
-                                <p class="text-xxs lg:text-base"><%= review.author %></p>
-                                <p class="font-medium text-xxs lg:text-base" >Rating : <span class="font-normal"><%= review.rating %></span></p>
-                                <hr class="my-1 lg:w-[30%]">
-                                <p class="font-medium text-xxs lg:text-base">Review : <span class="font-normal"><%= review.body %></span></p>
+                                <p class="text-xxs lg:text-base border-y-2 border-r-2 py-1 px-2 w-fit rounded-r-md mb-2"><%= review.author %></p>
+                                <p class="font-medium text-xxs lg:text-base" >
+                                    <% for ( let i = 1; i <= review.rating; i++ ) { %>
+                                        <i class="bi bi-star-fill mr-1 text-[#FFC436]"></i>
+                                        <% if (i === review.rating && i <= 5) { %>
+                                            <% for ( let j = i; j < 5; j++) { %>
+                                                <i class="bi bi-star mr-1 text-[#FFC436]"></i>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
+                                </p>
+                                <p class="font-medium text-xxs lg:text-base"><span class="font-normal"><%= review.body %></span></p>
                                 <% if (currentUser.username == 'admin') { %>
-                                    <form action="/course/<%= course._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="absolute top-[55%] lg:top-[60%] right-2 lg:right-3">
-                                        <button><i class="bi bi-trash3-fill text-xxs lg:text-base"></i></button>
+                                    <form id="form-delete-review" action="/course/<%= course._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="absolute top-[55%] lg:top-[60%] right-2 lg:right-3">
+                                        <button type="submit" ><i class="bi bi-trash3-fill text-xxs lg:text-base"></i></button>
                                     </form>
                                 <% } %>
                             </div>
                         <% } %>
-                    </div>
-                    <form class="w-[300px] p-3 rounded-md lg:absolute right-0 lg:top-0 scale-0 lg:scale-100" action="/course/<%= course._id%>/reviews" method="POST">
-                        <div class="mb-2">
-                            <label for="title" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Rating</label>
-                            <input type="range" name="reviews[rating]" id="rating" min="1" max="5" class="text-sm shadow-sm bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full" required>
+                        <div class="lg:absolute lg:top-0 lg:right-10 mb-10 -ml-2 -mt-3">
+                            <form class="w-[300px] p-3 rounded-md" action="/course/<%= course._id%>/reviews" method="POST">
+                                <div class="mb-2">
+                                    <label for="title" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Rating</label>
+                                    <div class="rating-container">
+                                        <input class="absolute top-16 hidden cursor-pointer" type="radio" name="reviews[rating]" id="rating1" value="1" onclick="handleRatingChange(1)" required>
+                                        <label for="rating1">
+                                            <i class="bi bi-star text-[#FFC436] text-md lg:text-4xl relative cursor-pointer"></i>
+                                        </label>
+                                    
+                                        <input class="absolute top-16 hidden cursor-pointer" type="radio" name="reviews[rating]" id="rating2" value="2" onclick="handleRatingChange(2)">
+                                        <label for="rating2">
+                                            <i class="bi bi-star text-[#FFC436] text-md lg:text-4xl relative cursor-pointer"></i>
+                                        </label>
+                                    
+                                        <input class="absolute top-16 hidden cursor-pointer" type="radio" name="reviews[rating]" id="rating3" value="3" onclick="handleRatingChange(3)">
+                                        <label for="rating3">
+                                            <i class="bi bi-star text-[#FFC436] text-md lg:text-4xl relative cursor-pointer"></i>
+                                        </label>
+                                    
+                                        <input class="absolute top-16 hidden cursor-pointer" type="radio" name="reviews[rating]" id="rating4" value="4" onclick="handleRatingChange(4)">
+                                        <label for="rating4">
+                                            <i class="bi bi-star text-[#FFC436] text-md lg:text-4xl relative cursor-pointer"></i>
+                                        </label>
+                                    
+                                        <input class="absolute top-16 hidden cursor-pointer" type="radio" name="reviews[rating]" id="rating5" value="5" onclick="handleRatingChange(5)">
+                                        <label for="rating5">
+                                            <i class="bi bi-star text-[#FFC436] text-md lg:text-4xl relative cursor-pointer"></i>
+                                        </label>
+                                    </div>                            
+                                </div>
+                                <div class="mb-2">
+                                    <label for="author" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Review</label>
+                                    <textarea type="text" name="reviews[body]" id="body" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2" required></textarea>
+                                </div>
+                                <button class="p-2 bg-yellow-300 rounded-md text-black font-medium text-xs lg:text-base" type="submit">Submit</button>
+                            </form>  
                         </div>
-                        <div class="mb-2">
-                            <label for="author" class="block mb-2 text-xs lg:text-base font-medium text-gray-900">Review</label>
-                            <textarea type="text" name="reviews[body]" id="body" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2" required></textarea>
-                        </div>
-                        <button class="p-2 bg-yellow-300 rounded-md text-black font-medium text-sm" type="submit">Submit</button>
-                    </form>  
-                </div>
-                <form class="w-[300px] p-3 rounded-md right-0 lg:hidden" action="/course/<%= course._id%>/reviews" method="POST">
-                    <div class="mb-2">
-                        <label for="title" class="block mb-2 text-xs font-medium text-white">Rating</label>
-                        <input type="range" name="reviews[rating]" id="rating" min="1" max="5" class="text-sm shadow-sm bg-gray-50 border border-gray-300 rounded-lg block w-full" required>
                     </div>
-                    <div class="mb-2">
-                        <label for="author" class="block mb-2 text-xs font-medium text-white">Review</label>
-                        <textarea type="text" name="reviews[body]" id="body" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2" required></textarea>
-                    </div>
-                    <button class="p-1 px-2 bg-yellow-300 rounded-md text-black font-medium text-xs" type="submit">Submit</button>
-                </form> 
+                </div> 
             </div>
             <div class="lg:w-[30%] bg-[#265073] px-10 py-6 lg:mr-14 h-max rounded-md lg:mt-2">
                 <div class="bg-white rounded-md p-3">
@@ -127,14 +150,38 @@
     showElement('modul');
 
     function showElement(elementId) {
-    let allElements = document.querySelectorAll('.hidden');
-        allElements.forEach(function(element) {
-        element.style.display = 'none';
-    });
+        let allElements = document.querySelectorAll('.hidden');
+            allElements.forEach(function(element) {
+            element.style.display = 'none';
+        });
 
-    let elementToShow = document.getElementById(elementId);
-    if (elementToShow) {
-        elementToShow.style.display = 'block';
+        let elementToShow = document.getElementById(elementId);
+        if (elementToShow) {
+            elementToShow.style.display = 'block';
+        }
     }
-    }
+
+    const formDeleteReview = document.getElementById('form-delete-review');
+    formDeleteReview.addEventListener('submit', function() {
+        event.preventDefault();
+    })
+
+    function handleRatingChange(selectedRating) {
+    const starIcons = document.querySelectorAll('.rating-container i');
+
+    for (let i = 0; i < starIcons.length; i++) {
+        const currentInput = document.getElementById(`rating${i + 1}`);
+        const inputIndex = parseInt(currentInput.value, 10); 
+        
+        currentInput.checked = inputIndex <= selectedRating;
+
+        starIcons[i].className = currentInput.checked ? 'bi bi-star-fill text-[#FFC436] cursor-pointer text-md lg:text-4xl' : 'bi bi-star text-[#FFC436] cursor-pointer text-md lg:text-4xl';
+    } 
+}
+
+
+
+
+
+
 </script>
